@@ -1,0 +1,128 @@
+CREATE TABLE `tblproducer` (
+  `ID` int(5) NOT NULL,
+  `Name` varchar(45) DEFAULT NULL,
+  `Email` text DEFAULT NULL,
+  `MobileNumber` bigint(15) DEFAULT NULL, 
+ `Village` varchar(20) DEFAULT NULL, 
+ `Taluka` varchar(20) DEFAULT NULL,
+ `District` varchar(20) DEFAULT NULL,
+ `Pincode` int(8) NOT NULL,
+  `ACHName` varchar(45) DEFAULT NULL,
+  `BranchName` varchar(20) DEFAULT NULL,
+  `ACNO` bigint(12) NOT NULL,
+  `IFSC` text,
+  `AdminRegdate` timestamp NULL DEFAULT current_timestamp(),
+  `UpdationDate` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+
+insert into `tblproducer` (
+  `ID` ,
+  `Name` ,
+  `Email`,
+  `MobileNumber` , 
+ `Village`, 
+ `Taluka`,
+ `District` ,
+ `Pincode` ,
+  `ACHName` ,
+  `BranchName`,
+  `ACNO` ,
+  `IFSC` ) VALUES (1,'Yogesh Dhanraj Pokale','yogeshpokale9696@gmail.com',919604123596,'Belgoan','Ashti','Beed',
+414208,'Yogesh Dhanraj Pokale','Ashti',38297096100,'SBIN002483');
+
+
+
+ALTER TABLE `tblproducer`
+  ADD PRIMARY KEY (`ID`);
+
+ALTER TABLE `tblproducer`
+  MODIFY `ID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+
+
+CREATE TABLE Car
+(
+Pk_Car_Id INT PRIMARY KEY,
+Brand VARCHAR(100),
+Model VARCHAR(100)
+);
+
+
+
+
+CREATE TABLE collection
+(
+c_no INT PRIMARY KEY AUTO_INCREMENT,
+c_date DATE,
+date_of_c timestamp NULL DEFAULT current_timestamp(),
+liters DOUBLE,
+fat float,
+degree float,
+snf float,
+rate float,
+amount DOUBLE,
+ID int ,
+  FOREIGN KEY(ID) REFERENCES tblproducer(ID));
+
+
+
+
+CREATE TABLE fat
+(id1 INT PRIMARY KEY AUTO_INCREMENT,
+Fat float NOT NULL
+);
+
+
+CREATE TABLE snf
+(id2 INT PRIMARY KEY AUTO_INCREMENT,
+SNF float NOT NULL
+);
+
+CREATE TABLE rate
+(id1 INT,FOREIGN KEY(id1) REFERENCES fat(id1),
+id2 INT,FOREIGN KEY(id2) REFERENCES snf(id2),
+Rate float not null);
+
+
+
+
+
+DELETE FROM `rate`;
+
+DELETE FROM `fat`;
+
+DELETE FROM `snf`;
+
+
+select rate from rate,fat,snf where SNF=8.5 and Fat=3.6 and fat.id1=rate.id1 and snf.id2=rate.id2;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CREATE TABLE fat
+(Fat float PRIMARY KEY
+);
+
+
+CREATE TABLE snf
+(SNF float PRIMARY KEY
+);
+
+
+CREATE TABLE rate
+(Fat float,FOREIGN KEY(Fat) REFERENCES fat(Fat),
+SNF float,FOREIGN KEY(SNF) REFERENCES snf(SNF),
+Rate float not null);
+
